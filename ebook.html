@@ -13,53 +13,26 @@
           theme: {
             extend: {
               "colors": {
-                      "on-error": "#690005",
-                      "on-primary-fixed-variant": "#8a1a1a",
-                      "on-tertiary-fixed": "#1b1c15",
-                      "secondary-fixed": "#e4e4cc",
-                      "background": "#0f1512",
-                      "surface-variant": "#303632",
-                      "tertiary-fixed": "#e4e3d7",
-                      "on-secondary-fixed": "#1b1d0e",
-                      "on-tertiary-fixed-variant": "#47473e",
-                      "on-surface-variant": "#dfbfbc",
-                      "on-secondary-container": "#b6b7a0",
-                      "on-primary-container": "#ffbeb8",
-                      "tertiary": "#c8c7bb",
-                      "primary-fixed-dim": "#ffb3ac",
-                      "surface-container-low": "#171d1a",
-                      "surface-container-lowest": "#090f0c",
-                      "surface-dim": "#0f1512",
-                      "secondary-fixed-dim": "#c7c8b1",
-                      "inverse-on-surface": "#2c322e",
-                      "error": "#ffb4ab",
-                      "on-secondary": "#303221",
-                      "surface-container-highest": "#303632",
-                      "outline": "#a78a87",
-                      "tertiary-fixed-dim": "#c8c7bb",
-                      "tertiary-container": "#58584f",
-                      "outline-variant": "#58413f",
-                      "secondary-container": "#464836",
-                      "on-primary-fixed": "#410003",
-                      "surface-tint": "#ffb3ac",
-                      "on-tertiary-container": "#cfcec2",
-                      "secondary": "#c7c8b1",
-                      "primary": "#ffb3ac",
-                      "primary-fixed": "#ffdad6",
-                      "error-container": "#93000a",
-                      "on-error-container": "#ffdad6",
-                      "inverse-primary": "#ab332f",
-                      "primary-container": "#a22c29",
-                      "surface-container-high": "#252b28",
-                      "on-surface": "#dee4de",
-                      "on-secondary-fixed-variant": "#464836",
-                      "surface-container": "#1b211e",
-                      "surface-bright": "#343b37",
-                      "on-primary": "#680008",
-                      "on-background": "#dee4de",
-                      "inverse-surface": "#dee4de",
-                      "surface": "#0f1512",
-                      "on-tertiary": "#303129"
+                      "primary": "#92BCEA",
+                      "primary-container": "#92BCEA",
+                      "on-primary-container": "#171A21",
+                      "on-primary": "#171A21",
+                      "secondary": "#AFB3F7",
+                      "secondary-container": "#617073",
+                      "on-secondary-container": "#FFFFFF",
+                      "tertiary": "#7A93AC",
+                      "background": "#171A21",
+                      "surface": "#171A21",
+                      "surface-dim": "#171A21",
+                      "surface-container-low": "#1f2228",
+                      "surface-container": "#252930",
+                      "surface-container-high": "#2f3540",
+                      "surface-container-highest": "#3a4150",
+                      "on-surface": "#FFFFFF",
+                      "on-surface-variant": "#7A93AC",
+                      "on-background": "#FFFFFF",
+                      "error": "#92BCEA",
+                      "on-error": "#171A21"
               },
               "borderRadius": {
                       "DEFAULT": "0.125rem",
@@ -117,7 +90,14 @@
             pointer-events: auto;
         }
         .hero-gradient {
-            background: linear-gradient(135deg, #a22c29 0%, #8a1a1a 100%);
+            background: linear-gradient(135deg, #92BCEA 0%, #171A21 100%);
+        }
+        .btn-primary {
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #7A93AC;
+            box-shadow: inset 0 0 1px rgba(175, 179, 247, 0.8);
         }
       </style>
 </head>
@@ -127,7 +107,7 @@
 <div class="menu-backdrop fixed inset-0 bg-black/80 z-40" id="menuBackdrop" onclick="toggleMenu()"></div>
 
 <!-- Mobile Menu Overlay -->
-<aside class="mobile-menu h-screen w-80 fixed left-0 top-0 flex flex-col bg-[#0f1512] font-['Epilogue'] font-medium p-6 gap-y-4 z-50" id="mobileMenu">
+<aside class="mobile-menu h-screen w-80 fixed left-0 top-0 flex flex-col bg-[#171A21] font-['Epilogue'] font-medium p-6 gap-y-4 z-50" id="mobileMenu">
     <div class="flex items-center justify-end mb-8">
         <button onclick="toggleMenu()" class="text-white/70 hover:text-white transition-colors">
             <span class="material-symbols-outlined text-3xl">close</span>
@@ -135,19 +115,19 @@
     </div>
     
     <nav class="flex flex-col gap-y-2">
-        <a class="flex items-center gap-3 px-4 py-4 text-white hover:bg-[#171d1a] transition-all rounded-sm" href="index.html">
+        <a class="flex items-center gap-3 px-4 py-4 text-white hover:bg-[#252930] transition-all rounded-sm" href="index.html">
             <span class="material-symbols-outlined">home</span>
             <span class="font-bold">Home</span>
         </a>
-        <a class="flex items-center gap-3 px-4 py-4 bg-[#171d1a] text-white transition-all rounded-sm" href="ebook.html">
+        <a class="flex items-center gap-3 px-4 py-4 bg-[#252930] text-white transition-all rounded-sm" href="ebook.html">
             <span class="material-symbols-outlined">menu_book</span>
             <span class="font-bold">E-Book</span>
         </a>
-        <a class="flex items-center gap-3 px-4 py-4 text-white hover:bg-[#171d1a] transition-all rounded-sm" href="redes.html">
+        <a class="flex items-center gap-3 px-4 py-4 text-white hover:bg-[#252930] transition-all rounded-sm" href="redes.html">
             <span class="material-symbols-outlined">share</span>
             <span class="font-bold">Redes</span>
         </a>
-        <a class="flex items-center gap-3 px-4 py-4 text-white hover:bg-[#171d1a] transition-all rounded-sm" href="marca-ropa.html">
+        <a class="flex items-center gap-3 px-4 py-4 text-white hover:bg-[#252930] transition-all rounded-sm" href="marca-ropa.html">
             <span class="material-symbols-outlined">checkroom</span>
             <span class="font-bold">Marca de Ropa</span>
         </a>
@@ -155,7 +135,7 @@
 </aside>
 
 <!-- TopAppBar -->
-<header class="fixed top-0 w-full z-40 bg-[#0f1512]/60 backdrop-blur-2xl bg-gradient-to-b from-[#171d1a] to-transparent shadow-[0_40px_40px_-15px_rgba(0,0,0,0.3)]">
+<header class="fixed top-0 w-full z-40 bg-[#171A21]/60 backdrop-blur-2xl bg-gradient-to-b from-[#171A21] to-transparent shadow-[0_40px_40px_-15px_rgba(0,0,0,0.3)]">
     <div class="flex justify-between items-center px-6 py-4 max-w-screen-2xl mx-auto">
         <div class="flex items-center gap-4">
             <button onclick="toggleMenu()" class="text-white/70 hover:text-white transition-colors p-2">
@@ -197,9 +177,7 @@
 
             <!-- Right: E-Book Cover Image -->
             <div class="group transition-all duration-300 overflow-hidden rounded-lg ambient-shadow">
-                <div class="aspect-[3/4] bg-white flex items-center justify-center">
-                    <span class="text-9xl font-headline font-black text-black/20 uppercase">IMAGEN</span>
-                </div>
+                <img class="w-full h-full object-cover rounded-lg" alt="Portada E-Book: Secretos de un Marketero" src="Diseño-sin-título-(1).webp"/>
             </div>
 
         </section>
@@ -208,13 +186,13 @@
 </main>
 
 <!-- BottomNavBar (Mobile Only) -->
-<nav class="fixed bottom-0 w-full z-50 lg:hidden bg-[#0f1512]/80 backdrop-blur-lg bg-gradient-to-t from-[#0f1512] to-transparent shadow-[0_-10px_30px_rgba(0,0,0,0.5)] border-t border-white/5">
+<nav class="fixed bottom-0 w-full z-50 lg:hidden bg-[#171A21]/80 backdrop-blur-lg bg-gradient-to-t from-[#171A21] to-transparent shadow-[0_-10px_30px_rgba(0,0,0,0.5)] border-t border-white/5">
     <div class="flex justify-around items-center py-3 px-4">
         <a class="flex flex-col items-center justify-center text-white/40 active:scale-90 transition-transform duration-200" href="index.html">
             <span class="material-symbols-outlined">home</span>
             <span class="font-['Epilogue'] text-[10px] uppercase font-bold tracking-widest mt-1">Home</span>
         </a>
-        <a class="flex flex-col items-center justify-center text-[#a22c29] scale-110 active:scale-90 transition-transform duration-200" href="ebook.html">
+        <a class="flex flex-col items-center justify-center text-[#92BCEA] scale-110 active:scale-90 transition-transform duration-200" href="ebook.html">
             <span class="material-symbols-outlined">menu_book</span>
             <span class="font-['Epilogue'] text-[10px] uppercase font-bold tracking-widest mt-1">E-Book</span>
         </a>
