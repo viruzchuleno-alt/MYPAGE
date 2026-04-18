@@ -119,6 +119,19 @@
         .grit-logo {
             filter: brightness(0) invert(1);
         }
+        
+        /* Floating animation */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
       </style>
 </head>
 <body class="bg-surface text-on-surface">
@@ -177,7 +190,7 @@
         
         <!-- Logo GRIT -->
         <div class="mb-16 flex justify-center">
-            <img src="LOGO MARCA DE ROPA.png" alt="GRIT Logo" class="w-48 h-48 object-contain grit-logo opacity-90"/>
+            <img src="LOGO MARCA DE ROPA.png" alt="GRIT Logo" class="w-48 h-48 object-contain grit-logo opacity-90 floating"/>
         </div>
 
         <!-- Misión -->
