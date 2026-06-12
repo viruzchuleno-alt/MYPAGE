@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-
-<html class="dark" lang="en"><head>
+<html class="dark" lang="es">
+<head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="description" content="Matías Ignacio Gariglio — Marketing, Estilo de Vida y Deporte. Hub central de mis proyectos: E-Book Secretos de un Marketero, GRIT y redes sociales."/>
 <title>KINETIC AUTHORITY | Vanguard Hub</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,400;0,500;0,700;0,800;0,900;1,900&amp;family=Manrope:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
         tailwind.config = {
@@ -54,41 +57,31 @@
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
-        body { 
-            font-family: 'Manrope', sans-serif; 
-            background-color: #171A21; 
-            color: #FFFFFF; 
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: #171A21;
+            color: #FFFFFF;
             line-height: 1.6;
         }
-        .font-headline { 
-            font-family: 'Epilogue', sans-serif; 
-            letter-spacing: -0.02em; /* DESIGN.md: Tight letter-spacing for headlines */
+        .font-headline {
+            font-family: 'Epilogue', sans-serif;
+            letter-spacing: -0.02em;
         }
-        
-        /* DESIGN.md: Ambient Glow Shadow (40px blur, 0 offset, 6% opacity) */
         .ambient-shadow {
             box-shadow: 0 0 40px rgba(222, 228, 222, 0.06);
         }
-        
-        /* DESIGN.md: Button hover with 1px inner glow */
         .btn-primary {
-            transition: all 0.3s ease;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
         .btn-primary:hover {
             background-color: #7A93AC;
             box-shadow: inset 0 0 1px rgba(175, 179, 247, 0.8);
         }
-        
-        /* DESIGN.md: Ghost Border (15% outline_variant) */
-        .ghost-border {
-            border: 1px solid rgba(88, 65, 63, 0.15);
-        }
-        
         .hero-gradient {
             background: linear-gradient(135deg, #92BCEA 0%, #171A21 100%);
         }
-        
-        /* Mobile Menu Overlay */
+
+        /* Mobile Menu */
         .mobile-menu {
             transform: translateX(-100%);
             transition: transform 0.3s ease-in-out;
@@ -105,21 +98,35 @@
             opacity: 1;
             pointer-events: auto;
         }
-        
-        /* Floating animation for profile image */
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
+
+        /* Hero entrance — one-time, smooth, premium */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(36px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
-        .floating {
-            animation: float 3s ease-in-out infinite;
+        .hero-text {
+            animation: fadeInUp 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+            will-change: opacity, transform;
         }
-        
-        /* Header scroll behavior */
+        .hero-subtitle {
+            animation: fadeInUp 1s 0.18s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        /* Bento card scroll-triggered entrance */
+        .bento-card {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.5s ease;
+        }
+        .bento-card.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .bento-card.animate-in:hover {
+            transform: scale(1.015);
+        }
+
+        /* Header scroll */
         .header-hidden {
             opacity: 0;
             transform: translateY(-100%);
@@ -130,9 +137,20 @@
             transform: translateY(0);
             transition: opacity 0.3s ease, transform 0.3s ease;
         }
+
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-delay: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+            .bento-card { opacity: 1; transform: none; }
+        }
       </style>
 </head>
 <body class="bg-surface text-on-surface">
+
 <!-- Mobile Menu Backdrop -->
 <div class="menu-backdrop fixed inset-0 bg-black/80 z-40" id="menuBackdrop" onclick="toggleMenu()"></div>
 
@@ -143,7 +161,6 @@
             <span class="material-symbols-outlined text-3xl">close</span>
         </button>
     </div>
-    
     <nav class="flex flex-col gap-y-2">
         <a class="flex items-center gap-3 px-4 py-4 bg-[#171d1a] text-white transition-all rounded-sm" href="index.html">
             <span class="material-symbols-outlined">home</span>
@@ -163,7 +180,8 @@
         </a>
     </nav>
 </aside>
-<!-- TopAppBar (Authority Source Hierarchy) -->
+
+<!-- TopAppBar -->
 <header id="mainHeader" class="fixed top-0 w-full z-40 bg-[#171A21]/60 backdrop-blur-2xl bg-gradient-to-b from-[#171A21] to-transparent shadow-[0_40px_40px_-15px_rgba(0,0,0,0.3)] header-hidden">
     <div class="flex justify-between items-center px-6 py-4 max-w-screen-2xl mx-auto">
         <div class="flex items-center gap-4">
@@ -179,117 +197,115 @@
         </nav>
     </div>
 </header>
+
 <!-- Main Content Canvas -->
 <main class="pb-20 md:pb-10">
+
     <!-- Hero Section -->
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden mb-12">
         <div class="absolute inset-0 z-0">
-            <!-- DESIGN.md: Signature Gradient (135deg) for hero -->
             <div class="absolute inset-0 hero-gradient"></div>
             <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/40 to-transparent z-10"></div>
-            <img class="w-full h-full object-cover grayscale opacity-20 mix-blend-overlay" data-alt="Sleek modern office space with high-end architecture, atmospheric lighting, and a professional aesthetic for a business hub" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB07cty2XMuvS44uFEyhHac4-hOWPMAdaBzBIKwAdD4LhVwvUzJ_BNevc1R9Bg3VXphHN8UG4tl6zPt_ABviUyCfN0DqeSlBh_1AfXZUrS8A-08inaJ0OBnNmMyQ1yFy94Pr45bA9TbsvadBgrIogWALPYSVNI0SDAT4p3LTwUDoqQjATgG4ES3c2keYVY5b1eNidCok3uzDK4JKQYKeWvdMj_94FY8LMc35uPPWEEve9RBrJ3oE1tIiB1QEgfB1LmkU2nOm8nNeLDk"/>
         </div>
         <div class="relative z-20 w-full flex flex-col items-center text-center px-6">
-            
-            <!-- Name - Main Floating Element -->
-            <h1 class="text-7xl md:text-9xl lg:text-[12rem] font-headline font-black text-white leading-[0.9] mb-8 max-w-6xl floating">
+            <h1 class="text-7xl md:text-9xl lg:text-[12rem] font-headline font-black text-white leading-[0.9] mb-8 max-w-6xl hero-text">
                 Matías Ignacio Gariglio
             </h1>
-            
-            <!-- Subtitle -->
-            <p class="text-3xl md:text-5xl font-headline font-bold text-[#AFB3F7] tracking-tight">
+            <p class="text-3xl md:text-5xl font-headline font-bold text-[#AFB3F7] tracking-tight hero-subtitle">
                 Marketing | Estilo de vida | Deporte
             </p>
         </div>
-</section>
-<!-- Project Grid: Bento Style -->
-<section class="grid grid-cols-1 gap-8 mb-24 px-6 max-w-screen-2xl mx-auto">
-<!-- E-Book: Secretos de un Marketero -->
-<div class="group bg-surface-container-low/40 backdrop-blur-xl border border-white/5 flex flex-col md:flex-row items-center overflow-hidden rounded-2xl hover:scale-[1.02] hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500">
-<div class="w-full md:w-1/2 h-80 md:h-96 bg-surface-container-high/50 flex items-center justify-center p-8">
-<img class="w-full h-full object-contain rounded-lg group-hover:scale-105 transition-transform duration-500" alt="Portada del E-Book: Secretos de un Marketero" src="efwfwFWDGg.webp"/>
-</div>
-<div class="w-full md:w-1/2 p-12">
-<div class="flex items-center gap-2 mb-4">
-<span class="h-[2px] w-8 bg-primary group-hover:w-12 transition-all duration-300"></span>
-<span class="text-primary font-bold uppercase tracking-widest text-[10px]">E-Book</span>
-</div>
-<h3 class="text-4xl md:text-5xl font-headline font-black uppercase italic tracking-tighter text-white mb-6 leading-tight group-hover:text-primary transition-colors duration-300">Secretos de un Marketero</h3>
-<p class="text-white/90 font-body text-lg mb-8 max-w-md">Nació con la idea de resumir pilares importantes e iniciales para cualquier persona que tenga su propio negocio, o piense en hacer uno.</p>
-                <a href="https://hiriart4.gumroad.com/l/SecretosdeunMarketero" target="_blank" class="inline-flex bg-primary-container text-on-primary-container px-8 py-4 font-black text-xs uppercase tracking-widest rounded-lg hover:bg-[#7A93AC] transition-all items-center gap-3 ambient-shadow btn-primary">
-                        Comprar
-                        <span class="material-symbols-outlined">arrow_forward</span>
-                </a>
-</div>
-</div>
+    </section>
 
-<!-- GRIT Brand -->
-<div class="group bg-black/40 backdrop-blur-xl border border-white/5 flex flex-col md:flex-row items-center overflow-hidden rounded-2xl hover:scale-[1.02] hover:shadow-2xl hover:shadow-white/10 transition-all duration-500">
-<div class="w-full md:w-1/2 h-80 md:h-96 bg-black/50 flex items-center justify-center p-12">
-<img class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" alt="GRIT Logo - Marca de ropa deportiva" src="LOGO MARCA DE ROPA.png" style="filter: brightness(0) invert(1);"/>
-</div>
-<div class="w-full md:w-1/2 p-12">
-<div class="flex items-center gap-2 mb-4">
-<span class="h-[2px] w-8 bg-primary group-hover:w-12 transition-all duration-300"></span>
-<span class="text-primary font-bold uppercase tracking-widest text-[10px]">Marca de Ropa</span>
-</div>
-<h3 class="text-4xl md:text-5xl font-headline font-black uppercase italic tracking-tighter text-white mb-6 leading-tight group-hover:text-primary transition-colors duration-300">GRIT</h3>
-<p class="text-white/90 font-body text-lg mb-8 max-w-md">Cambiando la historia de la deportiva latinoamericana. Ropa que representa disciplina, respeto, fuerza y valentía.</p>
-                <a href="https://grit-brand.com/" target="_blank" class="inline-flex bg-white text-black px-8 py-4 font-black text-xs uppercase tracking-widest rounded-lg hover:bg-white/90 transition-all items-center gap-3 ambient-shadow">
-                        Saber más
-                        <span class="material-symbols-outlined">arrow_forward</span>
-                </a>
-</div>
-</div>
+    <!-- Project Grid: Bento Style -->
+    <section class="grid grid-cols-1 gap-8 mb-24 px-6 max-w-screen-2xl mx-auto">
 
-<!-- Redes Sociales -->
-<div class="group bg-surface-container-low/40 backdrop-blur-xl border border-white/5 flex flex-col md:flex-row-reverse items-center overflow-hidden rounded-2xl hover:scale-[1.02] hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500">
-<div class="w-full md:w-1/2 h-80 md:h-96 bg-surface-container-high/50 flex items-center justify-center p-12">
-<div class="flex gap-8 items-center justify-center group-hover:scale-105 transition-transform duration-500">
-<a href="https://youtube.com/@matiasignaciogariglio?si=OnbasfwrbYNoN_i9" target="_blank" class="icon-group">
-<div class="w-20 h-20 md:w-24 md:h-24 flex items-center justify-center rounded-full bg-[#FF0000] hover:scale-110 transition-all duration-300 ambient-shadow">
-<svg class="w-12 h-12 md:w-14 md:h-14 fill-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-<path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-</svg>
-</div>
-</a>
-<a href="https://www.instagram.com/matiasignaciogariglio/" target="_blank" class="group">
-<div class="w-20 h-20 md:w-24 md:h-24 flex items-center justify-center rounded-full bg-gradient-to-br from-purple-600 to-pink-500 hover:scale-110 transition-all duration-300 ambient-shadow">
-<svg class="w-12 h-12 md:w-14 md:h-14 fill-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-<path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-</svg>
-</div>
-</a>
-<a href="https://www.tiktok.com/@matiasignaciogariglio100" target="_blank" class="group">
-<div class="w-20 h-20 md:w-24 md:h-24 flex items-center justify-center rounded-full bg-black hover:scale-110 transition-all duration-300 ambient-shadow">
-<svg class="w-12 h-12 md:w-14 md:h-14 fill-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-<path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
-</svg>
-</div>
-</a>
-</div>
-</div>
-<div class="w-full md:w-1/2 p-12">
-<div class="flex items-center gap-2 mb-4">
-<span class="h-[2px] w-8 bg-primary group-hover:w-12 transition-all duration-300"></span>
-<span class="text-primary font-bold uppercase tracking-widest text-[10px]">Redes Sociales</span>
-</div>
-<h3 class="text-4xl md:text-5xl font-headline font-black uppercase italic tracking-tighter text-white mb-6 leading-tight group-hover:text-primary transition-colors duration-300">Marca Personal</h3>
-<p class="text-white/90 font-body text-lg mb-8 max-w-md">Estoy en busca de crear una marca personal que inspire y conecte. Sígueme en mis redes para ver el proceso, estrategias y contenido sin filtro.</p>
-                <a href="redes.html" class="inline-flex bg-primary-container text-on-primary-container px-8 py-4 font-black text-xs uppercase tracking-widest rounded-lg hover:bg-[#7A93AC] transition-all items-center gap-3 ambient-shadow btn-primary">
-                        Ver Redes
-                        <span class="material-symbols-outlined">arrow_forward</span>
+        <!-- E-Book: Secretos de un Marketero -->
+        <div class="bento-card group bg-surface-container-low/40 backdrop-blur-xl border border-white/5 flex flex-col md:flex-row items-center overflow-hidden rounded-2xl hover:shadow-2xl hover:shadow-primary/10">
+            <div class="w-full md:w-1/2 h-80 md:h-96 bg-surface-container-high/50 flex items-center justify-center p-8">
+                <img class="w-full h-full object-contain rounded-lg group-hover:scale-105 transition-transform duration-500" alt="Portada del E-Book: Secretos de un Marketero" src="efwfwFWDGg.webp" loading="lazy" decoding="async"/>
+            </div>
+            <div class="w-full md:w-1/2 p-12">
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="h-[2px] w-8 bg-primary group-hover:w-12 transition-all duration-300"></span>
+                    <span class="text-primary font-bold uppercase tracking-widest text-[10px]">E-Book</span>
+                </div>
+                <h3 class="text-4xl md:text-5xl font-headline font-black uppercase italic tracking-tighter text-white mb-6 leading-tight group-hover:text-primary transition-colors duration-300">Secretos de un Marketero</h3>
+                <p class="text-white/90 font-body text-lg mb-8 max-w-md">Nació con la idea de resumir pilares importantes e iniciales para cualquier persona que tenga su propio negocio, o piense en hacer uno.</p>
+                <a href="https://hiriart4.gumroad.com/l/SecretosdeunMarketero" target="_blank" rel="noopener" class="inline-flex bg-primary-container text-on-primary-container px-8 py-4 font-black text-xs uppercase tracking-widest rounded-lg items-center gap-3 ambient-shadow btn-primary">
+                    Comprar
+                    <span class="material-symbols-outlined">arrow_forward</span>
                 </a>
-</div>
-</div>
-</section>
-</section>
+            </div>
+        </div>
+
+        <!-- GRIT Brand -->
+        <div class="bento-card group bg-black/40 backdrop-blur-xl border border-white/5 flex flex-col md:flex-row items-center overflow-hidden rounded-2xl hover:shadow-2xl hover:shadow-white/10">
+            <div class="w-full md:w-1/2 h-80 md:h-96 bg-black/50 flex items-center justify-center p-12">
+                <img class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" alt="GRIT Logo - Marca de ropa deportiva" src="LOGO MARCA DE ROPA.png" style="filter: brightness(0) invert(1);" loading="lazy" decoding="async"/>
+            </div>
+            <div class="w-full md:w-1/2 p-12">
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="h-[2px] w-8 bg-primary group-hover:w-12 transition-all duration-300"></span>
+                    <span class="text-primary font-bold uppercase tracking-widest text-[10px]">Marca de Ropa</span>
+                </div>
+                <h3 class="text-4xl md:text-5xl font-headline font-black uppercase italic tracking-tighter text-white mb-6 leading-tight group-hover:text-primary transition-colors duration-300">GRIT</h3>
+                <p class="text-white/90 font-body text-lg mb-8 max-w-md">Cambiando la historia de la deportiva latinoamericana. Ropa que representa disciplina, respeto, fuerza y valentía.</p>
+                <a href="https://grit-brand.com/" target="_blank" rel="noopener" class="inline-flex bg-white text-black px-8 py-4 font-black text-xs uppercase tracking-widest rounded-lg hover:bg-white/90 transition-colors items-center gap-3 ambient-shadow">
+                    Saber más
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Redes Sociales -->
+        <div class="bento-card group bg-surface-container-low/40 backdrop-blur-xl border border-white/5 flex flex-col md:flex-row-reverse items-center overflow-hidden rounded-2xl hover:shadow-2xl hover:shadow-primary/10">
+            <div class="w-full md:w-1/2 h-80 md:h-96 bg-surface-container-high/50 flex items-center justify-center p-12">
+                <div class="flex gap-8 items-center justify-center group-hover:scale-105 transition-transform duration-500">
+                    <a href="https://youtube.com/@matiasignaciogariglio?si=OnbasfwrbYNoN_i9" target="_blank" rel="noopener" aria-label="YouTube">
+                        <div class="w-20 h-20 md:w-24 md:h-24 flex items-center justify-center rounded-full bg-[#FF0000] hover:scale-110 transition-transform duration-300 ambient-shadow">
+                            <svg class="w-12 h-12 md:w-14 md:h-14 fill-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                            </svg>
+                        </div>
+                    </a>
+                    <a href="https://www.instagram.com/matiasignaciogariglio/" target="_blank" rel="noopener" aria-label="Instagram">
+                        <div class="w-20 h-20 md:w-24 md:h-24 flex items-center justify-center rounded-full bg-gradient-to-br from-purple-600 to-pink-500 hover:scale-110 transition-transform duration-300 ambient-shadow">
+                            <svg class="w-12 h-12 md:w-14 md:h-14 fill-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </div>
+                    </a>
+                    <a href="https://www.tiktok.com/@matiasignaciogariglio100" target="_blank" rel="noopener" aria-label="TikTok">
+                        <div class="w-20 h-20 md:w-24 md:h-24 flex items-center justify-center rounded-full bg-black hover:scale-110 transition-transform duration-300 ambient-shadow">
+                            <svg class="w-12 h-12 md:w-14 md:h-14 fill-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                            </svg>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 p-12">
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="h-[2px] w-8 bg-primary group-hover:w-12 transition-all duration-300"></span>
+                    <span class="text-primary font-bold uppercase tracking-widest text-[10px]">Redes Sociales</span>
+                </div>
+                <h3 class="text-4xl md:text-5xl font-headline font-black uppercase italic tracking-tighter text-white mb-6 leading-tight group-hover:text-primary transition-colors duration-300">Marca Personal</h3>
+                <p class="text-white/90 font-body text-lg mb-8 max-w-md">Estoy en busca de crear una marca personal que inspire y conecte. Sígueme en mis redes para ver el proceso, estrategias y contenido sin filtro.</p>
+                <a href="redes.html" class="inline-flex bg-primary-container text-on-primary-container px-8 py-4 font-black text-xs uppercase tracking-widest rounded-lg items-center gap-3 ambient-shadow btn-primary">
+                    Ver Redes
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </a>
+            </div>
+        </div>
+
+    </section>
 
 </main>
-<!-- BottomNavBar (Authority Source Hierarchy: Mobile Only) -->
+
+<!-- BottomNavBar (Mobile Only) -->
 <nav class="fixed bottom-0 w-full z-50 lg:hidden bg-[#171A21]/80 backdrop-blur-lg bg-gradient-to-t from-[#171A21] to-transparent shadow-[0_-10px_30px_rgba(0,0,0,0.5)] border-t border-white/5">
     <div class="flex justify-around items-center py-3 px-4">
-        <!-- Active State: Home -->
         <a class="flex flex-col items-center justify-center text-[#92BCEA] scale-110 active:scale-90 transition-transform duration-200" href="index.html">
             <span class="material-symbols-outlined">home</span>
             <span class="font-['Epilogue'] text-[10px] uppercase font-bold tracking-widest mt-1">Home</span>
@@ -317,24 +333,37 @@
         backdrop.classList.toggle('active');
     }
 
-    // Header scroll behavior
-    let lastScrollTop = 0;
+    // Header appears after scrolling past hero
     const header = document.getElementById('mainHeader');
-    
     window.addEventListener('scroll', function() {
-        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        // Show header when scrolling down past 100px
-        if (scrollTop > 100) {
+        if (window.pageYOffset > 80) {
             header.classList.remove('header-hidden');
             header.classList.add('header-visible');
         } else {
             header.classList.remove('header-visible');
             header.classList.add('header-hidden');
         }
-        
-        lastScrollTop = scrollTop;
-    });
+    }, { passive: true });
+
+    // Scroll-triggered bento card entrance animations
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.bento-card').forEach((card, i) => {
+            card.style.transitionDelay = `${i * 0.12}s`;
+            observer.observe(card);
+        });
+    } else {
+        document.querySelectorAll('.bento-card').forEach(card => card.classList.add('animate-in'));
+    }
 </script>
 
-</body></html>
+</body>
+</html>

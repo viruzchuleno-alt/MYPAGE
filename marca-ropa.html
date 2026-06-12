@@ -3,7 +3,11 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="description" content="GRIT — La marca de ropa deportiva latinoamericana de Matías Ignacio Gariglio. Disciplina, respeto, fuerza y valentía."/>
 <title>GRIT - Marca de Ropa | Kinetic Authority</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,400;0,500;0,700;0,800;0,900;1,900&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -94,7 +98,7 @@
             box-shadow: 0 0 40px rgba(222, 228, 222, 0.06);
         }
         .btn-primary {
-            transition: all 0.3s ease;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
         .btn-primary:hover {
             background-color: #7A93AC;
@@ -120,17 +124,21 @@
             filter: brightness(0) invert(1);
         }
         
-        /* Floating animation */
+        /* Subtle float for logo — 6px, slow, non-distracting */
         @keyframes float {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
+            0%, 100% { transform: translateY(0px); }
+            50%       { transform: translateY(-6px); }
         }
         .floating {
-            animation: float 3s ease-in-out infinite;
+            animation: float 6s ease-in-out infinite;
+            will-change: transform;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .floating { animation: none; }
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
         }
       </style>
 </head>
