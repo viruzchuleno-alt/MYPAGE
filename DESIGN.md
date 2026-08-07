@@ -1,7 +1,7 @@
 # Design System Strategy: High-Performance Editorial
 
-## 1. Overview & Creative North Star: "The Kinetic Authority"
-This design system is built to bridge the gap between high-performance athletic aesthetics and luxury editorial marketing. Our Creative North Star is **"The Kinetic Authority."** 
+## 1. Overview & Creative North Star: "MatiasIgnacio"
+This design system is built to bridge the gap between high-performance athletic aesthetics and luxury editorial marketing. Our Creative North Star is **"MatiasIgnacio."** 
 
 We are moving away from the "static template" look of traditional social media landing pages. Instead, we embrace **Intentional Asymmetry** and **Aggressive Contrast**. The goal is to make the user feel the energy of the influencer’s brand through visual tension: the "pull" of condensed, towering typography against the "push" of deep, atmospheric surfaces. We break the grid with overlapping elements and floating glass layers to ensure the experience feels custom-built and premium.
 
